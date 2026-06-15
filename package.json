@@ -1,0 +1,8 @@
+{
+  "name": "todo-ai",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ]
+}
