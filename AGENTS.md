@@ -7,6 +7,7 @@ Este archivo es el punto de entrada para la orquestación de agentes de IA en el
 ## Reglas no negociables
 
 - **Git Agency:** Ningún agente (incluido Orchestrator) puede ejecutar `git commit` o `git push` directamente. Estas operaciones son exclusivas del `git-agent` y requieren aprobación humana explícita (**Gates 9 y 10**).
+- **Historial inmutable:** Los archivos `progress/history.md` y `progress/tdd-history.md` son de solo agregar (append-only). **Nunca se editan, reescriben ni modifican entradas existentes.** Solo se agregan nuevas líneas al final. Cualquier intento de modificar entradas pasadas está prohibido.
 
 ---
 

@@ -62,12 +62,12 @@
 ## Frontend
 
 ### Configuración Inicial
-- [ ] FE-01 Inicializar proyecto React + Vite + TypeScript
-- [ ] FE-02 Configurar Tailwind CSS
-- [ ] FE-03 Configurar alias de importación (@/ para src/)
-- [ ] FE-04 Instalar y configurar Zustand
-- [ ] FE-05 Instalar y configurar React Hook Form
-- [ ] FE-06 Configurar scripts en package.json (dev, build, test)
+- [x] FE-01 Inicializar proyecto React + Vite + TypeScript
+- [x] FE-02 Configurar Tailwind CSS
+- [x] FE-03 Configurar alias de importación (@/ para src/)
+- [x] FE-04 Instalar y configurar Zustand
+- [x] FE-05 Instalar y configurar React Hook Form
+- [x] FE-06 Configurar scripts en package.json (dev, build, test)
 
 ### Shared — Cliente HTTP
 - [ ] FE-07 Crear shared/api/client.ts con fetch wrapper (get, post, put, delete)
