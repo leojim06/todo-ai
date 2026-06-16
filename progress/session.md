@@ -1,18 +1,24 @@
 # Sesión actual
 
-**Sesión:** SES-________-___
+**Sesión:** SES-20260615-001
 
-**US en curso:** # — 
+**US en curso:** US-BE-01 — Configuración del proyecto backend
 
-**Inicio:** __-__-____ __:__:__.___
+**Inicio:** 15-06-2026 22:11:35
 
-**Agente:**  | Estado: `activo`
+**Agente:** git-agent | Estado: `activo`
 
-**Plan:** 
+**Plan:** Configurar proyecto backend con Express, TypeScript, Prisma (SQLite) y Vitest. Tareas: BE-01 a BE-06.
 
 **Bitácora:** 
+- SES-20260615-001 iniciada. US-BE-01 seleccionada.
+- Rama `feat/backend-setup` creada desde `main`.
+- Ciclo TDD completado:
+  - smoke.test.ts: rojo → verde → ⏭️ refactor
+  - prisma.test.ts: rojo → verde → ⏭️ refactor
+- Verificación: ✅ APROBADA
 
-**Próximos pasos:** 
+**Próximos pasos:** Commit con git-agent.
 
 **Checklist:**
 - [ ] Compila sin errores
