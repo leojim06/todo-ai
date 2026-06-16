@@ -1,4 +1,4 @@
 # Historial de Sesiones
 
-<!-- Las entradas se agregan al inicio del archivo, arriba de este comentario -->
+<!-- Las entradas se agregan al FINAL del archivo. Nunca se editan ni reordenan entradas existentes. -->
 

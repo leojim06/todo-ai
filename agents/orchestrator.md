@@ -1,6 +1,6 @@
 ---
 name: orchestrator
-description: Coordina todos los agentes del flujo, gestiona la sesión, valida health checks y selecciona User Stories con el usuario.
+description: Coordina todos los agentes del flujo, gestiona la sesión, valida health checks, selecciona User Stories y gestiona el historial.
 tools:
   - read
   - write
@@ -21,7 +21,7 @@ Agente principal del flujo de trabajo asistido por IA. Es el punto de entrada de
 ### 1. Health Check (Gate)
 - Ejecuta `npm run build && npm run test` en backend, frontend y raíz.
 - Si falla: reporta el error exacto y detiene el flujo.
-- Si pasa: continúa.
+- Si pasa: pregunta al humano si desea iniciar una nueva sesión (**Gate 1**).
 
 ### 2. Gestión de sesión (`progress/session.md`)
 - Si `session.md` **está vacío** (solo plantilla): inicia sesión nueva.
@@ -30,38 +30,59 @@ Agente principal del flujo de trabajo asistido por IA. Es el punto de entrada de
 - Si `session.md` **tiene contenido**: retoma la sesión desde donde quedó.
   - Lee `Bitácora` y `Próximos pasos`.
   - Reanuda el trabajo en el punto indicado.
+  - No reinicia ni repite pasos ya completados.
 
 ### 3. Selección de User Story
 - Lee `docs/user-stories.md` y `docs/tasks.md`.
-- Propone una US al usuario con:
-  - Resumen y propósito.
-  - Tareas asociadas.
-  - Explicación de lo que se va a desarrollar.
-- Espera confirmación del usuario antes de proceder.
+- Propone una US al humano con: resumen, propósito, tareas asociadas y explicación de lo que se va a desarrollar.
+- Pregunta al humano si confirma la US (**Gate 2**).
+- Sin confirmación no se avanza.
 
-### 4. Orquestación
+### 4. Gestión de `history.md`
+- Antes de cada transición entre agentes o pasos, consolida el estado actual en `progress/history.md`.
+- Cada entrada incluye:
+  - Timestamp de inicio del paso.
+  - Acción realizada.
+  - Resultado.
+  - Aprobación humana recibida.
+- El dump se hace **antes** de modificar `session.md`, para preservar el estado anterior.
+
+### 5. Orquestación
 - Delega trabajo a los agentes usando `task`:
   - `agents/git-agent.md` → para rama y commits.
   - `agents/implementation-agent.md` → para TDD.
   - `agents/verification-agent.md` → para revisión.
-- Actualiza `session.md` en tiempo real (Plan, Bitácora, Próximos pasos).
+- Actualiza `session.md` en tiempo real: `Agente`, `Bitácora`, `Próximos pasos`.
 
-### 5. Cierre
-- Al finalizar, ejecuta health check completo.
-- Si pasa: migra resumen a `progress/history.md` y vacía `session.md`.
-- Si falla: notifica al usuario y no cierra la sesión.
+### 6. Cierre
+- Al finalizar la implementación y verificación, ejecuta health check completo.
+- Muestra resultados al humano y pregunta si confirma el cierre (**Gate 11**).
+- Si pasa: migra resumen final a `progress/history.md` y vacía `session.md`.
+- Si falla: notifica al humano y no cierra la sesión.
 
 ## Flujo de trabajo del Orchestrator
 
-1. Health Check → si falla, STOP.
-2. Revisar `progress/session.md` → reanudar o iniciar.
-3. Leer `docs/user-stories.md` → seleccionar US.
-4. Presentar US al usuario → esperar confirmación.
-5. Delegar a `git-agent` (rama).
-6. Delegar a `implementation-agent` (TDD).
-7. Delegar a `verification-agent`.
-8. Si verificación falla → volver al paso 6.
-9. Si verificación pasa → delegar a `git-agent` (commit).
-10. Health Check final.
-11. Migrar sesión a `progress/history.md`.
-12. Vaciar `progress/session.md`.
+1. Health Check (build + test) → si falla, STOP.
+2. Preguntar al humano: "Health Check OK. ¿Deseas iniciar una nueva sesión?" → si no, STOP.
+3. Revisar `progress/session.md` → reanudar o iniciar.
+4. Leer `docs/user-stories.md` → seleccionar US.
+5. Presentar US al humano: resumen, propósito, tareas.
+6. Preguntar al humano: "¿Confirmas esta US?" → si no, volver al paso 4.
+7. Dump a `progress/history.md`: Inicio de sesión.
+8. Actualizar `progress/session.md`: Agente = git-agent, Próximos pasos = "Crear rama".
+9. Delegar a `agents/git-agent.md` (rama).
+10. Tras retorno de git-agent, dump a `progress/history.md`: Rama creada.
+11. Actualizar `progress/session.md`: Agente = implementation-agent, Próximos pasos = "TDD".
+12. Delegar a `agents/implementation-agent.md` (TDD).
+13. Tras retorno de implementation-agent, dump a `progress/history.md`: Implementación.
+14. Actualizar `progress/session.md`: Agente = verification-agent, Próximos pasos = "Revisar".
+15. Delegar a `agents/verification-agent.md`.
+16. Si verificación rechaza → dump a history.md con resultado, volver al paso 11.
+17. Si verificación aprueba → dump a history.md con resultado.
+18. Actualizar `progress/session.md`: Agente = git-agent, Próximos pasos = "Commit".
+19. Delegar a `agents/git-agent.md` (commit).
+20. Tras retorno, dump a `progress/history.md`: Commit realizado.
+21. Health Check final (build + test).
+22. Preguntar al humano: "Health Check final OK. ¿Confirmas el cierre?" → si no, revisar.
+23. Migrar resumen final a `progress/history.md`.
+24. Vaciar `progress/session.md`.
