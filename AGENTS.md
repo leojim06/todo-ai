@@ -26,6 +26,40 @@ Este archivo es el punto de entrada para la orquestación de agentes de IA en el
 
 ---
 
+## Flujo completo de orquestación
+
+### Agentes del sistema
+
+| Agente | Archivo | Rol |
+|---|---|---|
+| Orchestrator | `agents/orchestrator.md` | Coordina, valida health check, gestiona sesión, selecciona US |
+| Git Agent | `agents/git-agent.md` | Ramas, commits, Pull Requests |
+| Implementation Agent | `agents/implementation-agent.md` | TDD (Rojo → Verde → Refactor) |
+| Verification Agent | `agents/verification-agent.md` | Revisa y aprueba/rechaza el código |
+
+### Secuencia
+
+```
+Orchestrator
+  │
+  ├─ 1. Health Check (build + test)
+  ├─ 2. Revisar progress/session.md → reanudar o iniciar
+  ├─ 3. Leer docs/user-stories.md → seleccionar US
+  ├─ 4. Presentar US al usuario → confirmación
+  │
+  ├─ 5. Git Agent → crear rama
+  ├─ 6. Implementation Agent → ciclo TDD (rojo → verde → refactor)
+  ├─ 7. Verification Agent → revisar y aprobar/rechazar
+  │     └─ Si rechaza → volver al paso 6
+  ├─ 8. Git Agent → commit
+  │
+  ├─ 9. Health Check final
+  ├─ 10. Migrar resumen a progress/history.md
+  └─ 11. Vaciar progress/session.md
+```
+
+---
+
 ## Referencias para agentes
 
 | Documento | Propósito |
@@ -35,3 +69,4 @@ Este archivo es el punto de entrada para la orquestación de agentes de IA en el
 | `docs/session-rules.md` | Reglas de manejo de sesiones (`progress/session.md` y `progress/history.md`) |
 | `docs/tasks.md` | Lista de tareas por funcionalidad |
 | `docs/user-stories.md` | User Stories del proyecto |
+| `agents/*.md` | Definiciones de cada agente del sistema |
