@@ -4,7 +4,7 @@
 
 **US en curso:** # — 
 
-**Inicio:** __-__-____ __:__
+**Inicio:** __-__-____ __:__:__.___
 
 **Agente:**  | Estado: `activo`
 

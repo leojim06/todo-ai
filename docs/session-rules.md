@@ -31,7 +31,7 @@ Registrar en tiempo real el progreso de una sesión de trabajo mientras los agen
 |---|---|
 | `Sesión` | ID único auto-generado: `SES-YYYYMMDD-NNN` |
 | `US en curso` | Número y nombre de la User Story |
-| `Inicio` | Fecha/hora de inicio en formato `dd-MM-yyyy hh:mm` |
+| `Inicio` | Fecha/hora de inicio en formato `dd-MM-yyyy hh:mm:ss.sss` |
 | `Agente` | Nombre del subagente activo + Estado (`activo`, `esperando`, `completado`) |
 | `Plan` | Descripción de lo que el agente planea realizar |
 | `Bitácora` | Historial de acciones: archivos modificados, decisiones tomadas, resultados |
@@ -58,12 +58,12 @@ Cada sesión se estructura en dos niveles de jerarquía:
 - `####` — cada paso dentro de la sesión
 
 ```markdown
-### SES-YYYYMMDD-NNN — dd-MM-yyyy
+### SES-YYYYMMDD-NNN — dd-MM-yyyy hh:mm:ss.sss
 **US:** # — Nombre
 **Estado:** Completada
 
 #### Paso N: Título del paso
-- **Inicio:** dd-MM-yyyy hh:mm
+- **Inicio:** dd-MM-yyyy hh:mm:ss.sss
 - **Agente:** Nombre del agente
 - **Acción:** Descripción de lo que se hizo
 - **Resultado:** ✅ OK / ❌ Fallo

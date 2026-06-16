@@ -41,7 +41,7 @@ Agente principal del flujo de trabajo asistido por IA. Es el punto de entrada de
 ### 4. Gestión de `history.md`
 - Antes de cada transición entre agentes o pasos, consolida el estado actual en `progress/history.md`.
 - Cada entrada incluye:
-  - Timestamp de inicio del paso.
+  - Timestamp de inicio del paso (formato `dd-MM-yyyy hh:mm:ss.sss`).
   - Acción realizada.
   - Resultado.
   - Aprobación humana recibida.
