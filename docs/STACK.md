@@ -4,9 +4,10 @@
 - **npm**
 
 ## Estructura del Proyecto
-- **Monorepo** con npm workspaces
-  - `frontend/` — Aplicación React
-  - `backend/` — API Express
+- **Monorepo** con npm workspaces: `frontend/` y `backend/`
+- Backend: Vertical Slice Architecture + Result Pattern
+- Frontend: Feature-Based MVVM + Zustand + React Hook Form
+- Tests: TDD con Vitest
 
 ## Frontend
 | Capa | Tecnología |

@@ -1,51 +1,37 @@
-# Reglas del Proyecto — Ejemplo Harness TODO
+# AGENTS.md — Entry Point
 
-## Commits
-- **Idioma:** Inglés
-- **Estándar:** Conventional Commits (https://www.conventionalcommits.org/)
-- **Formato:** `<type>(<scope>): <description>`
-- **Tipos permitidos:** `feat`, `fix`, `chore`, `refactor`, `test`, `docs`, `style`, `perf`
-- **Scope:** `backend`, `frontend`, `monorepo`, `deps`
-- **Ejemplos:**
-  ```
-  feat(backend): implement todo creation endpoint
-  test(frontend): add todo store unit tests
-  chore(monorepo): configure npm workspaces
-  ```
+Este archivo es el punto de entrada para la orquestación de agentes de IA en el proyecto `todo-ai`. Define el flujo obligatorio antes de comenzar cualquier trabajo sobre una User Story.
 
-## Branch Strategy
-- **Trunk-Based Development**
-- Rama principal: `main` (trunk)
-- Ramas temporales de corta duración desde `main`
-- Nomenclatura: `type/description` (ej: `feat/todo-service`, `fix/empty-title-validation`)
-- No se usan ramas `develop` ni `release`
-- Se elimina la rama después de mergear
+---
 
-## Versionado
-- **Semantic Versioning** (SemVer) — `MAJOR.MINOR.PATCH`
-- Tags en git con formato `v1.2.3`
-- `npm version` para actualizar versión automáticamente
-- `MAJOR`: cambios incompatibles en API
-- `MINOR`: nuevas funcionalidades compatibles
-- `PATCH`: bug fixes compatibles
+## Flujo obligatorio
 
-## Pull Requests
-- Título en inglés siguiendo conventional commits
-- Descripción opcional con cambios principales
-- Mínimo 1 approval antes de mergear (cuando aplique equipo)
-- Squash merge a `main`
+### Paso 1 — Health Check (Gate)
 
-## Estructura del Proyecto
-- Monorepo con npm workspaces: `frontend/` y `backend/`
-- Backend: Vertical Slice Architecture + Result Pattern
-- Frontend: Feature-Based MVVM + Zustand + React Hook Form
-- Tests: TDD con Vitest
+**Regla:** Antes de tocar cualquier User Story, el proyecto debe compilar y pasar todos los tests unitarios en ambos workspaces.
 
-## Stack Tecnológico
-- Ver `docs/STACK.md` para detalle completo
+**Proyectos:**
+- `backend/` → `npm run build && npm run test`
+- `frontend/` → `npm run build && npm run test`
+- Raíz (monorepo) → `npm run build && npm run test`
 
-## Documentación de Arquitectura
-- Backend: `docs/backend-arch.md`
-- Frontend: `docs/frontend-arch.md`
-- User Stories: `docs/user-stories.md`
-- Task List: `docs/tasks.md`
+**Si falla:**
+1. Detener el flujo.
+2. Reportar qué proyecto(s) fallaron y el error exacto.
+3. No se puede avanzar hasta que el health check pase en verde (0 errors, 0 failing tests).
+
+**Si pasa:**
+1. Continuar con el siguiente paso del flujo.
+2. Iniciar sesión de trabajo en `progress/session.md`.
+
+---
+
+## Referencias para agentes
+
+| Documento | Propósito |
+|---|---|
+| `docs/git-conventions.md` | Commits, branches, versionado, PRs |
+| `docs/STACK.md` | Stack tecnológico y estructura del proyecto |
+| `docs/session-rules.md` | Reglas de manejo de sesiones (`progress/session.md` y `progress/history.md`) |
+| `docs/tasks.md` | Lista de tareas por funcionalidad |
+| `docs/user-stories.md` | User Stories del proyecto |
