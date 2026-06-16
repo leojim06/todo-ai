@@ -97,6 +97,31 @@ El archivo es escrito exclusivamente por `implementation-agent` al completar cad
 
 ---
 
+## Seguimiento de estado de User Stories
+
+### Propósito
+Mantener visible el estado de cada US en `docs/user-stories.md` para saber de un vistazo qué falta implementar.
+
+### Estados posibles
+
+| Estado | Significado |
+|---|---|
+| `⏳ Pendiente` | No se ha trabajado aún |
+| `🔄 En progreso — SES-XXXXXXXXX` | Seleccionada y en desarrollo |
+| `✅ Completada — SES-XXXXXXXXX` | Implementada, verificada y cerrada |
+
+### Responsable
+El Orchestrator gestiona los cambios de estado:
+
+| Transición | Momento |
+|---|---|
+| `⏳ → 🔄` | Al confirmar la US (Gate 2) |
+| `🔄 → ✅` | Al cerrar la sesión con health check OK (Gate 11) |
+
+Además, al cerrar la sesión, el Orchestrator marca las tareas completadas como `[x]` en `docs/tasks.md`.
+
+---
+
 ## Puntos de aprobación humana
 
 Cada transición entre agentes o fases requiere aprobación explícita del humano mediante el tool `question`. Ningún agente puede avanzar al siguiente paso sin confirmación.
@@ -114,3 +139,5 @@ Cada transición entre agentes o fases requiere aprobación explícita del human
 | 9 | Git Agent | Commit | "Archivos a commitear: [lista]. Mensaje: `type(scope): desc`. ¿Apruebas?" |
 | 10 | Git Agent | Push | "Commit listo en local. ¿Deseas hacer push al remoto?" |
 | 11 | Orchestrator | Health Check final | "Health Check final OK. ¿Confirmas el cierre de la sesión?" |
+
+> **Regla estricta:** Los pasos 9 (commit) y 10 (push) solo pueden ser ejecutados por `git-agent`. Ningún otro agente puede realizar commits o push sin la aprobación humana de Gates 9 y 10.

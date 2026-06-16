@@ -6,6 +6,8 @@
 
 ### US-BE-01: Configuración del proyecto backend
 
+**Estado:** ✅ Completada — SES-20260615-001
+
 **Tareas relacionadas:** BE-01, BE-02, BE-03, BE-04, BE-05, BE-06
 
 ```gherkin
@@ -23,6 +25,8 @@ Feature: Configuración del Backend
 
 ### US-BE-02: Infraestructura compartida (AppError, Result, error handler)
 
+**Estado:** ⏳ Pendiente
+
 **Tareas relacionadas:** BE-07, BE-08, BE-09
 
 ```gherkin
@@ -38,6 +42,8 @@ Feature: Infraestructura Compartida
 
 ### US-BE-03: Repositorio de TODOs con Prisma
 
+**Estado:** ⏳ Pendiente
+
 **Tareas relacionadas:** BE-10, BE-11, BE-12, BE-13, BE-14
 
 ```gherkin
@@ -52,6 +58,8 @@ Feature: Repositorio de TODOs
 ---
 
 ### US-BE-04: Lógica de negocio — Servicio de TODOs
+
+**Estado:** ⏳ Pendiente
 
 **Tareas relacionadas:** BE-15, BE-16, BE-17, BE-18, BE-19, BE-20
 
@@ -74,6 +82,8 @@ Feature: Servicio de TODOs
 
 ### US-BE-05: Validación de datos con Zod
 
+**Estado:** ⏳ Pendiente
+
 **Tareas relacionadas:** BE-21, BE-22
 
 ```gherkin
@@ -93,6 +103,8 @@ Feature: Validación de Datos
 ---
 
 ### US-BE-06: Controladores REST
+
+**Estado:** ⏳ Pendiente
 
 **Tareas relacionadas:** BE-23, BE-24, BE-25, BE-26, BE-27
 
@@ -134,6 +146,8 @@ Feature: Controladores REST de TODOs
 
 ### US-BE-07: Rutas y montado en app
 
+**Estado:** ⏳ Pendiente
+
 **Tareas relacionadas:** BE-28, BE-29
 
 ```gherkin
@@ -148,6 +162,8 @@ Feature: Rutas REST de TODOs
 ---
 
 ### US-BE-08: Tests TDD del Servicio
+
+**Estado:** ⏳ Pendiente
 
 **Tareas relacionadas:** BE-30, BE-31, BE-32, BE-33, BE-34, BE-35, BE-36
 
@@ -188,6 +204,8 @@ Feature: Tests del Servicio de TODOs
 
 ### US-BE-09: Tests TDD del Controlador
 
+**Estado:** ⏳ Pendiente
+
 **Tareas relacionadas:** BE-37, BE-38, BE-39, BE-40, BE-41
 
 ```gherkin
@@ -221,6 +239,8 @@ Feature: Tests del Controlador REST
 
 ### US-FE-01: Configuración del proyecto frontend
 
+**Estado:** ⏳ Pendiente
+
 **Tareas relacionadas:** FE-01, FE-02, FE-03, FE-04, FE-05, FE-06
 
 ```gherkin
@@ -237,6 +257,8 @@ Feature: Configuración del Frontend
 
 ### US-FE-02: Cliente HTTP y tipos compartidos
 
+**Estado:** ⏳ Pendiente
+
 **Tareas relacionadas:** FE-07, FE-08
 
 ```gherkin
@@ -251,6 +273,8 @@ Feature: Cliente HTTP base con Fetch
 ---
 
 ### US-FE-03: Componentes base de UI
+
+**Estado:** ⏳ Pendiente
 
 **Tareas relacionadas:** FE-09, FE-10
 
@@ -267,6 +291,8 @@ Feature: Componentes base de interfaz
 
 ### US-FE-04: Store de TODOs con Zustand
 
+**Estado:** ⏳ Pendiente
+
 **Tareas relacionadas:** FE-11
 
 ```gherkin
@@ -281,6 +307,8 @@ Feature: Estado global de TODOs
 ---
 
 ### US-FE-05: Capa de API de TODOs
+
+**Estado:** ⏳ Pendiente
 
 **Tareas relacionadas:** FE-12
 
@@ -297,6 +325,8 @@ Feature: API Layer de TODOs
 
 ### US-FE-06: ViewModel — useTodos hook
 
+**Estado:** ⏳ Pendiente
+
 **Tareas relacionadas:** FE-13
 
 ```gherkin
@@ -312,6 +342,8 @@ Feature: ViewModel de TODOs
 ---
 
 ### US-FE-07: Formulario de creación de TODOs
+
+**Estado:** ⏳ Pendiente
 
 **Tareas relacionadas:** FE-14
 
@@ -334,6 +366,8 @@ Feature: Formulario de creación
 ---
 
 ### US-FE-08: Lista y elementos TODO
+
+**Estado:** ⏳ Pendiente
 
 **Tareas relacionadas:** FE-15, FE-16, FE-17
 
@@ -367,6 +401,8 @@ Feature: Lista de TODOs
 
 ### US-FE-09: Tests del frontend
 
+**Estado:** ⏳ Pendiente
+
 **Tareas relacionadas:** FE-18, FE-19, FE-20, FE-21
 
 ```gherkin
@@ -399,6 +435,8 @@ Feature: Tests del Frontend
 ---
 
 ### US-DEV-01: Configuración del Monorepo
+
+**Estado:** ⏳ Pendiente
 
 **Tareas relacionadas:** DEV-01, DEV-02, DEV-03, DEV-04
 

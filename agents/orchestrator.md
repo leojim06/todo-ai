@@ -37,6 +37,7 @@ Agente principal del flujo de trabajo asistido por IA. Es el punto de entrada de
 - Propone una US al humano con: resumen, propósito, tareas asociadas y explicación de lo que se va a desarrollar.
 - Pregunta al humano si confirma la US (**Gate 2**).
 - Sin confirmación no se avanza.
+- Si el humano confirma, actualiza el estado en `docs/user-stories.md`: `⏳ Pendiente` → `🔄 En progreso — {ID de sesión}`.
 
 ### 4. Gestión de `history.md`
 - Antes de cada transición entre agentes o pasos, consolida el estado actual en `progress/history.md`.
@@ -54,15 +55,18 @@ Agente principal del flujo de trabajo asistido por IA. Es el punto de entrada de
 
 ### 5. Orquestación
 - Delega trabajo a los agentes usando `task`:
-  - `agents/git-agent.md` → para rama y commits.
+  - `agents/git-agent.md` → para rama, commits y push.
   - `agents/implementation-agent.md` → para TDD.
   - `agents/verification-agent.md` → para revisión.
+- **El Orchestrator nunca ejecuta `git commit` ni `git push` directamente.** Siempre delega al `git-agent` respetando Gates 9 y 10.
 - Actualiza `session.md` en tiempo real: `Agente`, `Bitácora`, `Próximos pasos`.
 
 ### 6. Cierre
 - Al finalizar la implementación y verificación, ejecuta health check completo.
 - Muestra resultados al humano y pregunta si confirma el cierre (**Gate 11**).
 - Si pasa: migra resumen final a `progress/history.md` y vacía `session.md`.
+- Si pasa: marca la US como `✅ Completada` en `docs/user-stories.md` con el ID de sesión.
+- Si pasa: marca las tareas correspondientes como `[x]` en `docs/tasks.md`.
 - Si falla: notifica al humano y no cierra la sesión.
 
 ## Flujo de trabajo del Orchestrator
@@ -72,8 +76,9 @@ Agente principal del flujo de trabajo asistido por IA. Es el punto de entrada de
 3. Revisar `progress/session.md` → reanudar o iniciar.
 4. Leer `docs/user-stories.md` → seleccionar US.
 5. Presentar US al humano: resumen, propósito, tareas.
-6. Preguntar al humano: "¿Confirmas esta US?" → si no, volver al paso 4.
-7. Dump a `progress/history.md`: Inicio de sesión.
+ 6. Preguntar al humano: "¿Confirmas esta US?" → si no, volver al paso 4.
+ 6b. Actualizar `docs/user-stories.md`: estado `🔄 En progreso`.
+ 7. Dump a `progress/history.md`: Inicio de sesión.
 8. Actualizar `progress/session.md`: Agente = git-agent, Próximos pasos = "Crear rama".
 9. Delegar a `agents/git-agent.md` (rama).
 10. Tras retorno de git-agent, dump a `progress/history.md`: Rama creada.
@@ -89,5 +94,7 @@ Agente principal del flujo de trabajo asistido por IA. Es el punto de entrada de
 20. Tras retorno, dump a `progress/history.md`: Commit realizado.
 21. Health Check final (build + test).
 22. Preguntar al humano: "Health Check final OK. ¿Confirmas el cierre?" → si no, revisar.
-23. Migrar resumen final a `progress/history.md`.
-24. Vaciar `progress/session.md`.
+ 23. Migrar resumen final a `progress/history.md`.
+ 23b. Actualizar `docs/user-stories.md`: estado `✅ Completada — {ID sesión}`.
+ 23c. Actualizar `docs/tasks.md`: marcar tareas como `[x]`.
+ 24. Vaciar `progress/session.md`.

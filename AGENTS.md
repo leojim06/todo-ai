@@ -4,6 +4,12 @@ Este archivo es el punto de entrada para la orquestación de agentes de IA en el
 
 ---
 
+## Reglas no negociables
+
+- **Git Agency:** Ningún agente (incluido Orchestrator) puede ejecutar `git commit` o `git push` directamente. Estas operaciones son exclusivas del `git-agent` y requieren aprobación humana explícita (**Gates 9 y 10**).
+
+---
+
 ## Flujo obligatorio
 
 ### Paso 1 — Health Check (Gate)
