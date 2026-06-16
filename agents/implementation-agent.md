@@ -24,7 +24,7 @@ Agente de implementación que sigue estrictamente el ciclo TDD: **Rojo → Verde
 - Si el humano rechaza, ajusta el test según feedback.
 - Ejecuta `npm run test:<project>` para confirmar que falla.
 - Muestra el resultado al humano.
-- Escribe en `progress/tdd-history.md`: `{timestamp} | 🔴 | {nombre-test}: test escrito y falla como esperado`.
+- Escribe en `progress/tdd-history.md`: `{timestamp} | 🔴 | {nombre-test}: {descripción del test creado}`.
 
 ### 2. Ciclo TDD — Verde
 - Escribe el código mínimo necesario para que el test pase. No implementa más de lo necesario.
@@ -39,8 +39,8 @@ Agente de implementación que sigue estrictamente el ciclo TDD: **Rojo → Verde
 - Si hace refactor, muestra los cambios al humano y pregunta: "Código refactorizado. ¿Confirmas que está correcto?" (**Gate 6**).
 - Si no aplica refactor, informa al humano que se salta este paso.
 - Ejecuta tests para confirmar que siguen pasando.
-- Escribe en `progress/tdd-history.md`: `{timestamp} | 🔧 | {nombre-test}: código refactorizado`.
-- Si no aplica refactor, escribe en `progress/tdd-history.md`: `{timestamp} | 🔧 | {nombre-test}: skip — código ya limpio`.
+- Escribe en `progress/tdd-history.md`: `{timestamp} | 🔧 | {nombre-test}: {descripción del cambio efectuado}`.
+- Si no aplica refactor, escribe en `progress/tdd-history.md`: `{timestamp} | 🔧 | {nombre-test}: no aplica — código ya limpio`.
 
 ### 4. Decisión de ciclo
 - Al completar un ciclo completo, pregunta al humano: "Ciclo completado. ¿Siguiente test o pasamos a verificación?" (**Gate 7**).
