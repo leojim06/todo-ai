@@ -239,7 +239,7 @@ Feature: Tests del Controlador REST
 
 ### US-FE-01: Configuración del proyecto frontend
 
-**Estado:** ⏳ Pendiente
+**Estado:** 🔄 En progreso — SES-20260615-002
 
 **Tareas relacionadas:** FE-01, FE-02, FE-03, FE-04, FE-05, FE-06
 

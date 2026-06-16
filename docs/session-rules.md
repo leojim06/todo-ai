@@ -39,6 +39,9 @@ Registrar en tiempo real el progreso de una sesión de trabajo mientras los agen
 | `Próximos pasos` | Siguientes acciones o indicación de pasar al siguiente agente |
 | `Checklist` | Lista de verificación obligatoria antes de cerrar la sesión |
 
+### Edición de Bitácora
+Cada nueva entrada se inserta **antes de `**Próximos pasos:**`**. El anchor del `edit` debe incluir la última entrada de Bitácora existente para evitar sobrescribir entradas previas. Nunca usar `**Próximos pasos:**` como anchor único.
+
 ### Checklist obligatorio
 Cada sesión debe cumplir estos puntos antes de cerrarse:
 - [ ] Compila sin errores
@@ -94,6 +97,9 @@ Cada nueva entrada se agrega al **final** del archivo. **Nunca se editan ni reor
 
 ### Responsable
 El archivo es escrito exclusivamente por `implementation-agent` al completar cada fase del ciclo TDD.
+
+### Registro en tiempo real
+Cada fase 🔴/🟢/🔧 se registra **inmediatamente después de ocurrir**, no al final del ciclo. El timestamp debe capturarse con `Get-Date -Format "dd-MM-yyyy HH:mm:ss.fff"` en el momento exacto de cada fase, reflejando el tiempo real transcurrido entre 🔴, 🟢 y 🔧.
 
 ---
 

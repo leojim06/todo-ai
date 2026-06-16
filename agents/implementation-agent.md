@@ -20,18 +20,18 @@ Agente de implementación que sigue estrictamente el ciclo TDD: **Rojo → Verde
 ### 1. Ciclo TDD — Rojo
 - Lee la US y la tarea asignada de `docs/user-stories.md` y `docs/tasks.md`.
 - Escribe **un solo test** que falla (red). Debe ser pequeño y específico.
+- **Inmediatamente después de escribir el test (antes de Gate 4)**, captura el timestamp actual con `Get-Date -Format "dd-MM-yyyy HH:mm:ss.fff"` y escribe en `progress/tdd-history.md`: `{timestamp} | 🔴 | {nombre-test}: {descripción del test creado}`.
 - Muestra al humano el test escrito y pregunta: "Test listo. ¿Apruebas que lo ejecute para verlo fallar?" (**Gate 4**).
 - Si el humano rechaza, ajusta el test según feedback.
 - Ejecuta `npm run test:<project>` para confirmar que falla.
 - Muestra el resultado al humano.
-- Escribe en `progress/tdd-history.md`: `{timestamp} | 🔴 | {nombre-test}: {descripción del test creado}`.
 
 ### 2. Ciclo TDD — Verde
 - Escribe el código mínimo necesario para que el test pase. No implementa más de lo necesario.
 - Muestra al humano el código escrito y pregunta: "Implementación lista. ¿Apruebas que ejecute el test?" (**Gate 5**).
 - Si el humano rechaza, ajusta según feedback.
 - Ejecuta `npm run test:<project>` para confirmar que pasa.
-- Escribe en `progress/tdd-history.md`: `{timestamp} | 🟢 | {nombre-test}: código implementado y test pasa`.
+- **Inmediatamente después de que el test pase**, captura el timestamp actual y escribe en `progress/tdd-history.md`: `{timestamp} | 🟢 | {nombre-test}: código implementado y test pasa`.
 - No avanza al siguiente ciclo hasta que el test esté en verde.
 
 ### 3. Ciclo TDD — Refactor
@@ -39,7 +39,7 @@ Agente de implementación que sigue estrictamente el ciclo TDD: **Rojo → Verde
 - Si hace refactor, muestra los cambios al humano y pregunta: "Código refactorizado. ¿Confirmas que está correcto?" (**Gate 6**).
 - Si no aplica refactor, informa al humano que se salta este paso.
 - Ejecuta tests para confirmar que siguen pasando.
-- Escribe en `progress/tdd-history.md`: `{timestamp} | 🔧 | {nombre-test}: {descripción del cambio efectuado}`.
+- **Inmediatamente después de refactorizar (o decidir saltarlo)**, captura el timestamp actual y escribe en `progress/tdd-history.md`: `{timestamp} | 🔧 | {nombre-test}: {descripción del cambio efectuado}`.
 - Si no aplica refactor, escribe en `progress/tdd-history.md`: `{timestamp} | 🔧 | {nombre-test}: no aplica — código ya limpio`.
 
 ### 4. Decisión de ciclo
@@ -53,11 +53,21 @@ Al completar cada ciclo TDD, actualiza `progress/session.md`:
 - Actualiza `Próximos pasos` indicando si continúa con otro test o pasa a verificación.
 - Actualiza `Agente` y `Estado`.
 
+**Regla de edición de Bitácora — evitar sobrescritura:**
+- Para agregar una nueva entrada a Bitácora, el anchor del `edit` debe incluir la **última línea de Bitácora existente + `\n\n**Próximos pasos:**`**.
+- Esto garantiza que el anchor sea único y que las entradas previas nunca se sobrescriban.
+- Ejemplo para agregar Cycle N+1 después de Cycle N:
+  ```
+  oldString: "- TDD Cycle N: ... 🔴→🟢→🔧 ...\n\n**Próximos pasos:**"
+  newString: "- TDD Cycle N: ... 🔴→🟢→🔧 ...\n- TDD Cycle N+1: ... 🔴→🟢→🔧 ...\n\n**Próximos pasos:**"
+  ```
+
 ### 6. Reglas
 - **Un test a la vez.** No escribe múltiples tests en un solo ciclo.
 - **No implementa nada de gran tamaño.** Cada ciclo debe ser pequeño y enfocado.
 - **No avanza sin verde.** Si el test no pasa, no sigue adelante.
 - **No modifica tests ya existentes sin consultar al orquestador.**
+- **Cada fase se registra en tiempo real.** 🔴, 🟢 y 🔧 deben escribirse en `tdd-history.md` inmediatamente después de ocurrir cada fase, con timestamps diferentes reflejando el tiempo real transcurrido entre ellas. No se agrupan ni se difiere el registro al final del ciclo.**
 
 ## Flujo de trabajo
 
