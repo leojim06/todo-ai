@@ -47,6 +47,11 @@ Agente principal del flujo de trabajo asistido por IA. Es el punto de entrada de
   - Aprobación humana recibida.
 - El dump se hace **antes** de modificar `session.md`, para preservar el estado anterior.
 
+### 4b. Gestión de `tdd-history.md`
+- El archivo `progress/tdd-history.md` es gestionado exclusivamente por `implementation-agent`.
+- El Orchestrator no escribe directamente en este archivo.
+- Al inicio de sesión, verifica que el archivo exista; si no, lo crea con la plantilla.
+
 ### 5. Orquestación
 - Delega trabajo a los agentes usando `task`:
   - `agents/git-agent.md` → para rama y commits.

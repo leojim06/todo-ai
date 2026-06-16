@@ -8,8 +8,9 @@ Define las reglas de uso de la carpeta `progress/` para el seguimiento de sesion
 
 ```
 progress/
-├── session.md      ← Archivo activo de la sesión actual
-└── history.md      ← Historial acumulativo de sesiones completadas
+├── session.md          ← Archivo activo de la sesión actual
+├── history.md          ← Historial acumulativo de sesiones completadas
+└── tdd-history.md      ← Registro detallado de cada ciclo TDD
 ```
 
 ---
@@ -72,6 +73,27 @@ Cada sesión se estructura en dos niveles de jerarquía:
 
 ### Orden
 Cada nueva entrada se agrega al **final** del archivo. **Nunca se editan ni reordenan entradas existentes.**
+
+---
+
+## Reglas de `tdd-history.md`
+
+### Propósito
+Registrar en tiempo real cada paso del ciclo TDD (Rojo, Verde, Refactor) durante el flujo asistido por IA.
+
+### Formato
+`dd-MM-yyyy hh:mm:ss.sss | emoticon | descripción breve`
+
+Emoticones disponibles:
+- `🔴` — test escrito y falla como esperado
+- `🟢` — código implementado y test pasa
+- `🔧` — código refactorizado
+
+### Orden
+Cada nueva entrada se agrega al **final** del archivo. **Nunca se editan ni reordenan entradas existentes.**
+
+### Responsable
+El archivo es escrito exclusivamente por `implementation-agent` al completar cada fase del ciclo TDD.
 
 ---
 
