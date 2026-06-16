@@ -3,12 +3,12 @@
 ## Backend
 
 ### Configuración Inicial
-- [ ] BE-01 Inicializar proyecto Node.js con TypeScript
-- [ ] BE-02 Configurar Prisma con SQLite (schema Todo)
-- [ ] BE-03 Crear cliente singleton de Prisma
-- [ ] BE-04 Configurar Express con middlewares base (CORS, JSON parser)
-- [ ] BE-05 Configurar Vitest para correr tests
-- [ ] BE-06 Configurar scripts en package.json (dev, build, test)
+- [x] BE-01 Inicializar proyecto Node.js con TypeScript
+- [x] BE-02 Configurar Prisma con SQLite (schema Todo)
+- [x] BE-03 Crear cliente singleton de Prisma
+- [x] BE-04 Configurar Express con middlewares base (CORS, JSON parser)
+- [x] BE-05 Configurar Vitest para correr tests
+- [x] BE-06 Configurar scripts en package.json (dev, build, test)
 
 ### Módulo TODOs — Infraestructura
 - [ ] BE-07 Implementar shared/errors.ts (AppError class con code, message, httpStatus)

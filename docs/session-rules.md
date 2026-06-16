@@ -8,8 +8,9 @@ Define las reglas de uso de la carpeta `progress/` para el seguimiento de sesion
 
 ```
 progress/
-├── session.md      ← Archivo activo de la sesión actual
-└── history.md      ← Historial acumulativo de sesiones completadas
+├── session.md          ← Archivo activo de la sesión actual
+├── history.md          ← Historial acumulativo de sesiones completadas
+└── tdd-history.md      ← Registro detallado de cada ciclo TDD
 ```
 
 ---
@@ -75,6 +76,52 @@ Cada nueva entrada se agrega al **final** del archivo. **Nunca se editan ni reor
 
 ---
 
+## Reglas de `tdd-history.md`
+
+### Propósito
+Registrar en tiempo real cada paso del ciclo TDD (Rojo, Verde, Refactor) durante el flujo asistido por IA.
+
+### Formato
+`dd-MM-yyyy hh:mm:ss.sss | emoticon | descripción breve`
+
+Emoticones disponibles:
+- `🔴` — test escrito y falla como esperado
+- `🟢` — código implementado y test pasa
+- `🔧` — código refactorizado
+
+### Orden
+Cada nueva entrada se agrega al **final** del archivo. **Nunca se editan ni reordenan entradas existentes.**
+
+### Responsable
+El archivo es escrito exclusivamente por `implementation-agent` al completar cada fase del ciclo TDD.
+
+---
+
+## Seguimiento de estado de User Stories
+
+### Propósito
+Mantener visible el estado de cada US en `docs/user-stories.md` para saber de un vistazo qué falta implementar.
+
+### Estados posibles
+
+| Estado | Significado |
+|---|---|
+| `⏳ Pendiente` | No se ha trabajado aún |
+| `🔄 En progreso — SES-XXXXXXXXX` | Seleccionada y en desarrollo |
+| `✅ Completada — SES-XXXXXXXXX` | Implementada, verificada y cerrada |
+
+### Responsable
+El Orchestrator gestiona los cambios de estado:
+
+| Transición | Momento |
+|---|---|
+| `⏳ → 🔄` | Al confirmar la US (Gate 2) |
+| `🔄 → ✅` | Al cerrar la sesión con health check OK (Gate 11) |
+
+Además, al cerrar la sesión, el Orchestrator marca las tareas completadas como `[x]` en `docs/tasks.md`.
+
+---
+
 ## Puntos de aprobación humana
 
 Cada transición entre agentes o fases requiere aprobación explícita del humano mediante el tool `question`. Ningún agente puede avanzar al siguiente paso sin confirmación.
@@ -92,3 +139,5 @@ Cada transición entre agentes o fases requiere aprobación explícita del human
 | 9 | Git Agent | Commit | "Archivos a commitear: [lista]. Mensaje: `type(scope): desc`. ¿Apruebas?" |
 | 10 | Git Agent | Push | "Commit listo en local. ¿Deseas hacer push al remoto?" |
 | 11 | Orchestrator | Health Check final | "Health Check final OK. ¿Confirmas el cierre de la sesión?" |
+
+> **Regla estricta:** Los pasos 9 (commit) y 10 (push) solo pueden ser ejecutados por `git-agent`. Ningún otro agente puede realizar commits o push sin la aprobación humana de Gates 9 y 10.
