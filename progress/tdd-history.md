@@ -62,3 +62,18 @@ Formato: `dd-MM-yyyy hh:mm:ss.sss | emoticon | descripción`
 16-06-2026 02:06:12.673 | 🔴 | tsconfig.node.json: test que verifica include vite.config.ts y types node
 16-06-2026 02:07:02.112 | 🟢 | tsconfig.node.json: incluye vite.config.ts y types node
 16-06-2026 02:07:18.090 | 🔧 | tsconfig.node.json: no aplica — código ya limpio
+16-06-2026 02:35:10.655 | 🔴 | AppError: should create an error with code, message and httpStatus — test fails as expected (module not found)
+16-06-2026 02:39:22.508 | 🟢 | AppError: should create an error with code, message and httpStatus — code implemented and test passes
+16-06-2026 02:39:22.508 | 🔧 | AppError: should create an error with code, message and httpStatus — no aplica, código ya limpio
+16-06-2026 02:41:47.000 | 🔴 | AppError: should be an instance of Error — test escrito
+16-06-2026 02:41:47.000 | 🟢 | AppError: should be an instance of Error — test pasa (AppError ya extiende Error)
+16-06-2026 02:41:47.000 | 🔧 | AppError: should be an instance of Error — no aplica, código ya limpio
+16-06-2026 02:44:20.000 | 🔴 | Result<T>: success and error types — test escrito
+16-06-2026 02:44:45.000 | 🟢 | Result<T>: types.ts creado con Result<T> — test pasa
+16-06-2026 02:44:45.000 | 🔧 | Result<T>: no aplica, código ya limpio
+16-06-2026 02:47:24.318 | 🔴 | errorHandler: should return 400 for AppError and 500 for unknown errors — test escrito
+16-06-2026 02:51:01.095 | 🟢 | errorHandler: error-handler.ts implementado y test pasa — 8/8 tests passed
+16-06-2026 02:51:39.564 | 🔧 | errorHandler: no aplica — código ya limpio
+16-06-2026 02:55:40.945 | 🔴 | Integration: error handler catches AppError and unknown errors in Express routes — test escrito
+16-06-2026 02:56:56.579 | 🟢 | Integration: error handler catches AppError and unknown errors — 10/10 tests passed
+16-06-2026 02:57:12.042 | 🔧 | Integration: no aplica — código ya limpio
