@@ -11,9 +11,9 @@
 - [x] BE-06 Configurar scripts en package.json (dev, build, test)
 
 ### Módulo TODOs — Infraestructura
-- [ ] BE-07 Implementar shared/errors.ts (AppError class con code, message, httpStatus)
-- [ ] BE-08 Implementar shared/types.ts (Result<T>, tipos helpers)
-- [ ] BE-09 Implementar middleware global de errores (error.handler.ts)
+- [x] BE-07 Implementar shared/errors.ts (AppError class con code, message, httpStatus)
+- [x] BE-08 Implementar shared/types.ts (Result<T>, tipos helpers)
+- [x] BE-09 Implementar middleware global de errores (error.handler.ts)
 
 ### Módulo TODOs — Repository
 - [ ] BE-10 Implementar findAll en todo.repository.ts
